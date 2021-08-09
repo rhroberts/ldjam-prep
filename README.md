@@ -1,4 +1,5 @@
 # ldjam-prep
+
 A dummy game to learn what is involved in the process and not go into the game jam *completely* clueless.
 
 ## Info
@@ -24,3 +25,8 @@ A dummy game to learn what is involved in the process and not go into the game j
     - Game logic
     - ...
   - ...
+
+## Game Engines
+
+To explore which game engine we want to use maybe we can make the dummy game in a
+couple different ones and see what people like. Let's use different branches for each.
