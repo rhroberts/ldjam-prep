@@ -30,3 +30,6 @@ A dummy game to learn what is involved in the process and not go into the game j
 
 To explore which game engine we want to use maybe we can make the dummy game in a
 couple different ones and see what people like. Let's use different branches for each.
+
+ - https://github.com/rhroberts/ldjam-prep/tree/love
+ - https://github.com/rhroberts/ldjam-prep/tree/pico8
