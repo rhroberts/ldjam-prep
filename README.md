@@ -9,12 +9,12 @@ A dummy game to learn what is involved in the process and not go into the game j
 
 **Where**: The Internet, as accessed from Cody & Karin's place
 
-Potential game engines/platforms:
+### Potential game engines/platforms
   - PICO-8 (https://www.lexaloffle.com/pico-8.php)
   - LÖVE (https://love2d.org/)
   - ...
 
-Optional prep:
+### Optional prep
   - Learn some Lua (https://www.lua.org/start.html)
   - Contribute to this repo
   - Think about non-programming things that will be involved
