@@ -30,8 +30,8 @@ While we can (and should) do whatever we are interested in, partitioning by role
 
 - [x] Art (  + shaders (^_<)〜☆  ) - Cody?
 - [ ] Music (, Rusty)
-- [ ] Concept/Mechanics/Story
-- [ ] Game Programming (Rusty, )
+- [ ] Concept/Mechanics/Story (Curtis, 
+- [ ] Game Programming (Rusty, everyone?)
 
 ## Game Engines
   - [PICO-8](https://www.lexaloffle.com/pico-8.php)
@@ -51,9 +51,9 @@ Increment the count for your desired engine.
 
   - PICO-8   : 0
   - VOXATRON : 0
-  - LÖVE     : 2
+  - LÖVE     : 3
 
-  Voted: [Cody, Rusty]
+  Voted: [Cody, Rusty, Curtis]
 
 ## Helpful Software
 
