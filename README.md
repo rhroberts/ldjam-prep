@@ -29,9 +29,9 @@ A dummy game to learn what is involved in the process and not go into the game j
 While we can (and should) do whatever we are interested in, partitioning by role will _probably_ be helpful, although this is the kind of thing that would be better informed by experience. At the very least, the tasks we come up with can partition this way. Think about what big bucket you may want to focus on, maybe even throw your name down. No need for just one per, either.
 
 - [x] Art (  + shaders (^_<)〜☆  ) - Cody?
-- [ ] Music
+- [ ] Music (, Rusty)
 - [ ] Concept/Mechanics/Story
-- [ ] Game Programming
+- [ ] Game Programming (Rusty, )
 
 ## Game Engines
   - [PICO-8](https://www.lexaloffle.com/pico-8.php)
@@ -51,9 +51,9 @@ Increment the count for your desired engine.
 
   - PICO-8   : 0
   - VOXATRON : 0
-  - LÖVE     : 1
+  - LÖVE     : 2
 
-  Voted: [Cody]
+  Voted: [Cody, Rusty]
 
 ## Helpful Software
 
