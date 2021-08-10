@@ -26,7 +26,7 @@ A dummy game to learn what is involved in the process and not go into the game j
 
 ## Roles
 
-While we can (and should) do whatever we are interested in, partitioning by role will _probably_ be helpful, although this is the kind of thing that would be better informed by experience. At the very least, the tasks we come up with can partition this way. Think about what big bucket you may want to focus on, maybe even throw your name down.
+While we can (and should) do whatever we are interested in, partitioning by role will _probably_ be helpful, although this is the kind of thing that would be better informed by experience. At the very least, the tasks we come up with can partition this way. Think about what big bucket you may want to focus on, maybe even throw your name down. No need for just one per, either.
 
 - [x] Art (  + shaders (^_<)〜☆  ) - Cody?
 - [ ] Music
@@ -55,7 +55,7 @@ Increment the count for your desired engine.
 
   Voted: [Cody]
 
-### Helpful Software
+## Helpful Software
 
 - Trello 
   
