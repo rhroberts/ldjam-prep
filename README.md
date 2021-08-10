@@ -4,32 +4,64 @@ A dummy game to learn what is involved in the process and not go into the game j
 
 ## Info
 
-**What**: Ludum Dare 49 (https://ldjam.com/)
+**What**: [Ludum Dare 49](https://ldjam.com/) - Jam Submission. [Rules here.](https://ldjam.com/events/ludum-dare/rules)
 
-**When**: October 1st - 4th (Fri 3pm - Mon 3pm; 48hrs + 1hr submission window) 
+**When**: October 1st - 4th (Fri 3pm - Mon 3pm; 72hrs + 1hr submission window) 
 
-**Where**: The Internet, as accessed from Cody & Karin's place
-
-### Potential game engines/platforms
-  - PICO-8 (https://www.lexaloffle.com/pico-8.php)
-  - LÖVE (https://love2d.org/)
-  - ...
+**Where**: The Internet, as accessed from Cody & Karin's place. Bring your cat7s!
 
 ### Optional prep
-  - Learn some Lua (https://www.lua.org/start.html)
   - Contribute to this repo
-  - Think about non-programming things that will be involved
-    - Story
-    - Art
-    - Music / Sound Design
-    - Game logic
-    - ...
-  - ...
+  - [Learn some Lua](https://www.lua.org/start.html)
+  - Read [Game Programming Patterns](https://gameprogrammingpatterns.com/contents.html)
+    
+    this may seem like overkill, but this humble-looking (and pretty short) book is phenomenal and very approachable. It will get the juices flowing, I have no doubt. Each pattern is illustrated w/ an example that you will understand.
+
+  - Watch some of Pixel Prophecies videos to get a feel for what it's like, what needs to be done, and how rough the time constraints are.
+    - [37](https://www.youtube.com/watch?v=51Koukxcloc)
+    - [38](https://www.youtube.com/watch?v=fWWBb_Lzc9g)
+    - [39](https://www.youtube.com/watch?v=8uMQXdjRvls)
+    - [45](https://www.youtube.com/watch?v=UO9BARNj8cQ)
+    - [46](https://www.youtube.com/watch?v=jmIqZzYLZz8&t=1468s)
+
+## Roles
+
+While we can (and should) do whatever we are interested in, partitioning by role will _probably_ be helpful, although this is the kind of thing that would be better informed by experience. At the very least, the tasks we come up with can partition this way. Think about what big bucket you may want to focus on, maybe even throw your name down.
+
+- [x] Art (  + shaders (^_<)〜☆  ) - Cody?
+- [ ] Music
+- [ ] Concept/Mechanics/Story
+- [ ] Game Programming
 
 ## Game Engines
+  - [PICO-8](https://www.lexaloffle.com/pico-8.php)
+  - [VOXATRON](https://www.lexaloffle.com/voxatron.php) (Similar to PICO-8)
+  - [LÖVE](https://love2d.org/)
+  - ...
 
 To explore which game engine we want to use maybe we can make the dummy game in a
 couple different ones and see what people like. Let's use different branches for each.
 
  - https://github.com/rhroberts/ldjam-prep/tree/love
  - https://github.com/rhroberts/ldjam-prep/tree/pico8
+
+### Voting
+
+Increment the count for your desired engine.
+
+  - PICO-8   : 0
+  - VOXATRON : 0
+  - LÖVE     : 1
+
+  Voted: [Cody]
+
+### Helpful Software
+
+- Trello 
+  
+  I think it's likely we will want some solution for brainstorming, recording ideas, and recording / tracking tasks. I'm pretty partial to Trello, to be honest, and it can easily be made into a kanban mutant.
+
+- Aseprite
+
+  This is solid 2d pix software. Anything beyond pixels is probably beyond our grasp (个_个)
+
