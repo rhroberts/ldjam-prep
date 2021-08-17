@@ -52,9 +52,9 @@ Increment the count for your desired engine.
 
 - PICO-8   : 0
 - VOXATRON : 0
-- LÖVE     : 3
+- LÖVE     : 4
 
-Voted: [Cody, Rusty, Curtis]
+Voted: [Cody, Rusty, Curtis, Marcus]
 
 ## Helpful Software
 
