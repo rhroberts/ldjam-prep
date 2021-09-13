@@ -1,4 +1,4 @@
-local peachy = require("peachy.peachy")
+local peachy = require("external.peachy.peachy")
 local f22 = peachy.new("sprites/F-22.json", love.graphics.newImage("sprites/F-22.png"), "Level_Flight")
 local br = peachy.new("sprites/F-22.json", love.graphics.newImage("sprites/F-22.png"), "Roll")
 
