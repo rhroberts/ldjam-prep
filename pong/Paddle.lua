@@ -37,3 +37,5 @@ end
 function Paddle:getColor()
     return(self.color)
 end
+
+return(Paddle)
