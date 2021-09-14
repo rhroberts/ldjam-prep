@@ -22,7 +22,22 @@ function love.load()
 end
 
 function love.draw()
+
+    -- always show hint for quitting
+    love.graphics.printf(
+        {{0.3, 0.3, 0.3}, "Press 'Esc' to quit."},
+        Fonts.small, 0, 0, WINDOW_WIDTH, "right"
+    )
+
+    -- use goto to keep state machine logic clear
     if GameState == "start" then
+        goto start
+    elseif GameState == "serve" then
+        goto serve
+    end
+
+    -- title screen
+    ::start:: do
         love.graphics.printf(
             "Let's Pong!",      -- text
             Fonts.big,            -- font
@@ -40,13 +55,12 @@ function love.draw()
             'center'
         )
         love.graphics.printf({{1, 0, 0}, GameState}, Fonts.small, 0, 0, WINDOW_WIDTH)
-    elseif GameState == "serve" then
+    end
+
+    -- start of a volley
+    ::serve:: do
         love.graphics.printf({{1, 0, 0}, GameState}, Fonts.small, 0, 0, WINDOW_WIDTH)
     end
-    love.graphics.printf(
-        {{0.3, 0.3, 0.3}, "Press 'Esc' to quit."},
-        Fonts.small, 0, 0, WINDOW_WIDTH, "right"
-    )
 end
 
 function love.keypressed(key)

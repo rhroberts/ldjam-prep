@@ -8,7 +8,20 @@
             "type": "process",
             "command": "C:\\Program Files\\LOVE\\love.exe",
             "args": [
-                "${workspaceFolder}\\love\\roguelike\\src"
+                "${workspaceFolder}\\roguelike\\src"
+            ],
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Linux Launch Pong",
+            "type": "process",
+            "command": "love",
+            "args": [
+                "${workspaceFolder}/pong"
             ],
             "problemMatcher": [],
             "group": {
