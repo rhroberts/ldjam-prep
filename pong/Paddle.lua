@@ -1,6 +1,6 @@
 Paddle = {
     width = 20,
-    height = 80,
+    height = 100,
     color = {1, 1, 1}
 }
 
@@ -36,6 +36,10 @@ end
 
 function Paddle:getColor()
     return(self.color)
+end
+
+function Paddle:draw(x, y)
+    love.graphics.rectangle("fill", x, y, self.width, self.height, 4)
 end
 
 return(Paddle)
