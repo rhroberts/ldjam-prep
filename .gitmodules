@@ -1,3 +1,6 @@
 [submodule "f-22/peachy"]
 	path = f-22/peachy
 	url = https://github.com/josh-perry/peachy.git
+[submodule "pong/ext/pprint"]
+	path = pong/ext/pprint
+	url = https://github.com/jagt/pprint.lua.git

@@ -4,6 +4,7 @@ local Ball = require"Ball"
 
 WINDOW_WIDTH = 1280
 WINDOW_HEIGHT = 720
+PADDLE_SPEED = 200  -- px/dt
 
 function love.load()
 
@@ -41,18 +42,9 @@ function love.draw()
         Fonts.small, 0, 0, WINDOW_WIDTH, "right"
     )
 
-    -- use goto to keep state machine logic clear
-    -- this is pretty silly.. just trying to figure out how gotos work
+    -- this is a silly way to do this.. just trying to figure out how gotos work
     if GameState == "start" then
-        goto start
-    elseif GameState == "serve" then
-        goto serve
-    else
-        goto endFrame
-    end
-
     -- title screen
-    ::start:: do
         love.graphics.printf(
             "Let's Pong!",      -- text
             Fonts.big,          -- font
@@ -70,49 +62,38 @@ function love.draw()
             'center'
         )
         DrawGameState()
-        goto endFrame
-    end
-
-    -- start of a volley
-    ::serve:: do
+    elseif GameState == "serve" then
+        -- start of a volley
         Player1:draw(0, 0 + Player1:getHeight())
+        -- Player2:draw(
+        --     WINDOW_WIDTH - Player2:getWidth(),
+        --     WINDOW_HEIGHT - Player2:getHeight() * 2
+        -- )
         Player2:draw(
             WINDOW_WIDTH - Player2:getWidth(),
-            WINDOW_HEIGHT - Player2:getHeight() * 2
+            Player2:getY()
         )
         Ball:draw(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2)
         DrawGameState()
-        goto endFrame
     end
-
-    ::endFrame:: do
-    end
-
 end
 
 function love.update(dt)
-    -- use goto to keep state machine logic clear
-    -- this is pretty silly.. just trying to figure out how gotos work
-    if GameState == "start" then
-        goto start
-    elseif GameState == "serve" then
-        goto serve
+    -- if GameState == "start" then
+    -- elseif GameState == "serve" then
+    -- end
+
+
+    -- paddles can move whenever
+    if love.keyboard.isDown("j") then
+        Player2:setVelocity(PADDLE_SPEED)
+    elseif love.keyboard.isDown("k") then
+        Player2:setVelocity(-PADDLE_SPEED)
     else
-        goto last
+        Player2:setVelocity(0)
     end
 
-    -- title screen
-    ::start:: do
-        -- TODO: Animate title screen
-        goto last
-    end
-
-    -- start of a volley
-    ::serve:: do
-    end
-
-    ::last:: do
-    end
+    Player2:move(dt)
 end
 
 function love.keypressed(key)
