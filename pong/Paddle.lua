@@ -62,7 +62,7 @@ function Paddle:getY()
 end
 
 function Paddle:move(dt)
-    Paddle:setY(self.y + self.velocity * dt)
+    self.y = self.y + self.velocity * dt
 end
 
 -- FIXME

@@ -83,9 +83,17 @@ function love.update(dt)
     -- elseif GameState == "serve" then
     -- end
 
-
     -- paddles can move whenever
     if love.keyboard.isDown("j") then
+        Player1:setVelocity(PADDLE_SPEED)
+    elseif love.keyboard.isDown("k") then
+        Player1:setVelocity(-PADDLE_SPEED)
+    else
+        Player1:setVelocity(0)
+    end
+
+    -- paddles can move whenever
+    if love.keyboard.isDown("s") then
         Player2:setVelocity(PADDLE_SPEED)
     elseif love.keyboard.isDown("k") then
         Player2:setVelocity(-PADDLE_SPEED)
@@ -93,6 +101,7 @@ function love.update(dt)
         Player2:setVelocity(0)
     end
 
+    Player1:move(dt)
     Player2:move(dt)
 end
 
