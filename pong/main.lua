@@ -29,20 +29,17 @@ function love.load()
     Sounds = {
         paddle = love.audio.newSource("assets/sounds/paddle.ogg", "static")
     }
-    Player1 = Paddle:new()
-    Player2 = Paddle:new()
+    Player1 = Paddle:new{}
+    Player1:setX(-20)
+    -- center paddle in y
+    Player1:setY(WINDOW_HEIGHT / 2 - Player1:getHeight() / 2)
+    Player2 = Paddle:new{}
+    Player2:setX(WINDOW_WIDTH - Player2:getWidth())
+    Player2:setY(WINDOW_HEIGHT / 2 - Player2:getHeight() / 2)
     Ball = Ball:new()
 end
 
 function love.draw()
-
-    -- always show hint for quitting
-    love.graphics.printf(
-        {{0.3, 0.3, 0.3}, "Press 'Esc' to quit."},
-        Fonts.small, 0, 0, WINDOW_WIDTH, "right"
-    )
-
-    -- this is a silly way to do this.. just trying to figure out how gotos work
     if GameState == "start" then
     -- title screen
         love.graphics.printf(
@@ -64,18 +61,18 @@ function love.draw()
         DrawGameState()
     elseif GameState == "serve" then
         -- start of a volley
-        Player1:draw(0, 0 + Player1:getHeight())
-        -- Player2:draw(
-        --     WINDOW_WIDTH - Player2:getWidth(),
-        --     WINDOW_HEIGHT - Player2:getHeight() * 2
-        -- )
-        Player2:draw(
-            WINDOW_WIDTH - Player2:getWidth(),
-            Player2:getY()
-        )
+        Player1:draw()
+        Player2:draw()
         Ball:draw(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2)
         DrawGameState()
     end
+
+    -- always show hint for quitting
+    love.graphics.printf(
+        {{0.3, 0.3, 0.3}, "Press 'Esc' to quit."},
+        Fonts.small, 0, 0, WINDOW_WIDTH, "right"
+    )
+
 end
 
 function love.update(dt)
@@ -84,16 +81,19 @@ function love.update(dt)
     -- end
 
     -- paddles can move whenever
-    if love.keyboard.isDown("j") then
+    if love.keyboard.isDown("s") then
         Player1:setVelocity(PADDLE_SPEED)
-    elseif love.keyboard.isDown("k") then
+        print("Player 1 Y: " .. Player1:getY())
+    elseif love.keyboard.isDown("d") then
         Player1:setVelocity(-PADDLE_SPEED)
+        print("Player 1 Y: " .. Player1:getY())
     else
         Player1:setVelocity(0)
+        print("Player 1 Y: " .. Player1:getY())
     end
 
     -- paddles can move whenever
-    if love.keyboard.isDown("s") then
+    if love.keyboard.isDown("j") then
         Player2:setVelocity(PADDLE_SPEED)
     elseif love.keyboard.isDown("k") then
         Player2:setVelocity(-PADDLE_SPEED)

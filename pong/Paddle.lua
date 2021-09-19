@@ -2,16 +2,14 @@ Paddle = {}
 
 function Paddle:new(t)
     t = t or {}
-    self.__index = self
-    setmetatable(t, self)
-
     self.width = 20
     self.height = 100
     self.x = 0
-    self.y = self.width
+    self.y = 0
     self.velocity = 0
     self.color = {1, 1, 1}
-
+    self.__index = self
+    setmetatable(t, self)
     return(t)
 end
 
@@ -27,6 +25,17 @@ end
 
 function Paddle:setVelocity(v)
     self.velocity = v
+end
+
+function Paddle:setX(x)
+    local ulim = WINDOW_WIDTH - Paddle:getWidth()
+    self.x = x > ulim and ulim or x < 0 and 0 or x
+end
+
+function Paddle:setY(y)
+    local ulim = WINDOW_HEIGHT - Paddle:getHeight()
+    -- cLaMp WiTh LuA lOgIc
+    self.y = y > ulim and ulim or y < 0 and 0 or y
 end
 
 function Paddle:setColor(c)
@@ -46,25 +55,29 @@ function Paddle:getColor()
     return(self.color)
 end
 
-function Paddle:draw(x, y)
-    love.graphics.rectangle("fill", x, y, self.width, self.height, 4)
-end
-
-function Paddle:setY(y)
-    -- TODO: don't hardcode window height in limit
-    local ulim = 720 - Paddle:getHeight()
-    -- cLaMp WiTh LuA lOgIc
-    self.y = y > ulim and ulim or y < 0 and 0 or y
+function Paddle:getX()
+    return(self.x)
 end
 
 function Paddle:getY()
     return(self.y)
 end
 
-function Paddle:move(dt)
-    self.y = self.y + self.velocity * dt
+function Paddle:getVelocity(v)
+    return(self.velocity)
 end
 
+function Paddle:draw()
+    love.graphics.rectangle(
+        "fill", self:getX(), self:getY(), self:getWidth(), self:getHeight(), 4
+    )
+end
+
+function Paddle:move(dt)
+    self:setY(self:getY() + self:getVelocity() * dt)
+end
+
+--[[
 -- FIXME
 function Paddle:tostring()
     local t = self.__index or self
@@ -87,5 +100,6 @@ function Paddle:tostring()
     end
     return(attrs)
 end
+--]]
 
 return(Paddle)
