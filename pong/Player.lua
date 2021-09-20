@@ -1,73 +1,104 @@
-Paddle = {}
+Player = {}
 
-function Paddle:new(t)
+function Player:new(t)
     t = t or {}
+    self.name = "Player"
     self.width = 20
     self.height = 100
     self.x = 0
     self.y = 0
     self.velocity = 0
     self.color = {1, 1, 1}
+    self.points = 0
+    self.winner = false
     self.__index = self
     setmetatable(t, self)
     return(t)
 end
 
-function Paddle:setWidth(w)
+function Player:setWidth(w)
     -- TODO: check input
     self.width = w
 end
 
-function Paddle:setHeight(h)
+function Player:setHeight(h)
     -- TODO: check input
     self.height = h
 end
 
-function Paddle:setVelocity(v)
+function Player:setVelocity(v)
     self.velocity = v
 end
 
-function Paddle:setX(x)
-    local ulim = WINDOW_WIDTH - Paddle:getWidth()
+function Player:setX(x)
+    local ulim = WINDOW_WIDTH - Player:getWidth()
     self.x = x > ulim and ulim or x < 0 and 0 or x
 end
 
-function Paddle:setY(y)
-    local ulim = WINDOW_HEIGHT - Paddle:getHeight()
+function Player:setY(y)
+    local ulim = WINDOW_HEIGHT - Player:getHeight()
     -- cLaMp WiTh LuA lOgIc
     self.y = y > ulim and ulim or y < 0 and 0 or y
 end
 
-function Paddle:setColor(c)
+function Player:setName(name)
+    self.name = name
+end
+
+function Player:setColor(c)
     -- TODO: check that c is a valid {r, g, b} list
     self.color = c
 end
 
-function Paddle:getWidth()
+function Player:setScore(n)
+    self.points = n
+end
+
+function Player:incrementScore()
+    self.points = self.points + 1
+end
+
+function Player:setWinner(isWinner)
+    self.winner = isWinner
+end
+
+function Player:isWinner()
+    return(self.winner)
+end
+
+function Player:getWidth()
     return(self.width)
 end
 
-function Paddle:getHeight()
+function Player:getHeight()
     return(self.height)
 end
 
-function Paddle:getColor()
+function Player:getName()
+    return(self.name)
+end
+
+function Player:getColor()
     return(self.color)
 end
 
-function Paddle:getX()
+function Player:getX()
     return(self.x)
 end
 
-function Paddle:getY()
+function Player:getY()
     return(self.y)
 end
 
-function Paddle:getVelocity(v)
+function Player:getVelocity(v)
     return(self.velocity)
 end
 
-function Paddle:draw()
+function Player:getScore()
+    return(self.points)
+end
+
+function Player:draw()
     love.graphics.setColor(unpack(self:getColor()))
     love.graphics.rectangle(
         "fill", self:getX(), self:getY(), self:getWidth(), self:getHeight(), 4
@@ -75,11 +106,12 @@ function Paddle:draw()
     love.graphics.setColor({255, 255, 255})
 end
 
-function Paddle:move(dt)
+function Player:move(dt)
     self:setY(self:getY() + self:getVelocity() * dt)
 end
 
-function Paddle:set(side)
+function Player:set(side)
+    -- reposition players for next serve
     if side == "left" then
         self:setX(0)
         self:setY(WINDOW_HEIGHT / 2 - Player1:getHeight() / 2)
@@ -87,7 +119,11 @@ function Paddle:set(side)
         self:setX(WINDOW_WIDTH - Player2:getWidth())
         self:setY(WINDOW_HEIGHT / 2 - Player2:getHeight() / 2)
     end
+end
 
+function Player:reset()
+    self:setWinner(false)
+    self:setScore(0)
 end
 
 --[[
@@ -115,4 +151,4 @@ function Paddle:tostring()
 end
 --]]
 
-return(Paddle)
+return(Player)

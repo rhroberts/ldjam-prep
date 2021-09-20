@@ -1,7 +1,5 @@
 Ball = {}
 
-BALL_INIT_SPEED = 300
-
 function Ball:new(t)
     t = t or {}
     self.x = 0
@@ -78,11 +76,11 @@ end
 
 function Ball:isColliding(paddle)
     if
-        self:getX() > paddle:getX() + paddle:getWidth() or
-        paddle:getX() > self:getX() + self:getRadius() * 2 then
+        self:getX() > paddle:getX() + paddle:getWidth() + self:getRadius() or
+        paddle:getX() > self:getX() + self:getRadius() then
         return false
     elseif
-        self:getY() > paddle:getY() + paddle:getHeight() or
+        self:getY() > paddle:getY() + paddle:getHeight() + self:getRadius() or
         paddle:getY() > self:getY() + self:getRadius() then
         return false
     else
