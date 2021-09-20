@@ -68,13 +68,26 @@ function Paddle:getVelocity(v)
 end
 
 function Paddle:draw()
+    love.graphics.setColor(unpack(self:getColor()))
     love.graphics.rectangle(
         "fill", self:getX(), self:getY(), self:getWidth(), self:getHeight(), 4
     )
+    love.graphics.setColor({255, 255, 255})
 end
 
 function Paddle:move(dt)
     self:setY(self:getY() + self:getVelocity() * dt)
+end
+
+function Paddle:set(side)
+    if side == "left" then
+        self:setX(0)
+        self:setY(WINDOW_HEIGHT / 2 - Player1:getHeight() / 2)
+    elseif side == "right" then
+        self:setX(WINDOW_WIDTH - Player2:getWidth())
+        self:setY(WINDOW_HEIGHT / 2 - Player2:getHeight() / 2)
+    end
+
 end
 
 --[[

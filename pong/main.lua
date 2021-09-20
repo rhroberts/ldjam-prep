@@ -54,13 +54,8 @@ function love.load()
     Sounds = {
         paddle = love.audio.newSource("assets/sounds/paddle.ogg", "static")
     }
-    Player1 = Paddle:new{}
-    Player1:setX(-20)
-    -- center paddle in y
-    Player1:setY(WINDOW_HEIGHT / 2 - Player1:getHeight() / 2)
-    Player2 = Paddle:new{}
-    Player2:setX(WINDOW_WIDTH - Player2:getWidth())
-    Player2:setY(WINDOW_HEIGHT / 2 - Player2:getHeight() / 2)
+    Player1 = Paddle:new{color = {0.2, 0.2, 0.8}}
+    Player2 = Paddle:new{color = {0.2, 0.8, 0.2}}
     Ball = Ball:new{}
 end
 
@@ -85,12 +80,9 @@ function love.draw()
         )
         Player1Score = 0
         Player2Score = 0
-        Ball:set()
     elseif GameState == "serve" then
         -- start of a volley
         DrawScore()
-        Player1:draw()
-        Player2:draw()
         love.graphics.printf(
             "Press Enter to serve!",
             Fonts.big,
@@ -99,6 +91,9 @@ function love.draw()
             WINDOW_WIDTH,
             "center"
         )
+        Ball:set()
+        Player1:draw()
+        Player2:draw()
     elseif GameState == "play" then
         DrawScore()
         Ball:draw()
@@ -123,6 +118,8 @@ end
 
 function love.update(dt)
     if GameState == "serve" then
+        Player1:set("left")
+        Player2:set("right")
         return
     elseif GameState == "play" then
         Ball:move(dt)
@@ -165,18 +162,18 @@ function love.update(dt)
     end
 
     -- paddles can move whenever
-    if love.keyboard.isDown("d") then
+    if love.keyboard.isDown("s") then
         Player1:setVelocity(PADDLE_SPEED)
-    elseif love.keyboard.isDown("s") then
+    elseif love.keyboard.isDown("w") then
         Player1:setVelocity(-PADDLE_SPEED)
     else
         Player1:setVelocity(0)
     end
 
     -- paddles can move whenever
-    if love.keyboard.isDown("j") then
+    if love.keyboard.isDown("down") then
         Player2:setVelocity(PADDLE_SPEED)
-    elseif love.keyboard.isDown("k") then
+    elseif love.keyboard.isDown("up") then
         Player2:setVelocity(-PADDLE_SPEED)
     else
         Player2:setVelocity(0)
@@ -191,7 +188,6 @@ function love.keypressed(key)
         if GameState == "start" then
             GameState = "serve"
         elseif GameState == "serve" then
-            Sounds.paddle:play()
             GameState = "play"
         elseif GameState == "finished" then
             GameState = "start"

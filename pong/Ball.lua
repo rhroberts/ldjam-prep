@@ -79,7 +79,7 @@ end
 function Ball:isColliding(paddle)
     if
         self:getX() > paddle:getX() + paddle:getWidth() or
-        paddle:getX() > self:getX() + self:getRadius() then
+        paddle:getX() > self:getX() + self:getRadius() * 2 then
         return false
     elseif
         self:getY() > paddle:getY() + paddle:getHeight() or
