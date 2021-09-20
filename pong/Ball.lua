@@ -5,8 +5,8 @@ function Ball:new(t)
     self.x = 0
     self.y = 0
     self.dx = math.random(2) == 1 and -BALL_INIT_SPEED or BALL_INIT_SPEED
-    self.dy = math.random(2) == 1 and math.random(0, -BALL_INIT_SPEED) or
-              math.random(0, BALL_INIT_SPEED)
+    self.dy = math.random(2) == 1 and -math.random(BALL_INIT_SPEED) or
+              math.random(BALL_INIT_SPEED)
     self.radius = 10
     -- TODO: actually implement color
     self.color = {1, 1, 1}
@@ -94,8 +94,8 @@ function Ball:set()
     self:setX(WINDOW_WIDTH / 2)
     self:setY(WINDOW_HEIGHT / 2)
     self:setDx(math.random(2) == 1 and -BALL_INIT_SPEED or BALL_INIT_SPEED)
-    self:setDy(math.random(2) == 1 and math.random(0, -BALL_INIT_SPEED) or
-               math.random(0, BALL_INIT_SPEED))
+    self:setDy(math.random(2) == 1 and -math.random(BALL_INIT_SPEED) or
+               math.random(BALL_INIT_SPEED))
 end
 
 return(Ball)
