@@ -1,12 +1,11 @@
 -- entry point to game
 local Player = require"Player"
 local Ball = require"Ball"
-local pprint = require"ext.pprint.pprint"
 
 WINDOW_WIDTH = 1280
 WINDOW_HEIGHT = 720
-PADDLE_SPEED = 300  -- px/dt
-BALL_INIT_SPEED = 300
+PADDLE_SPEED = 400  -- px/dt
+BALL_INIT_SPEED = 400
 WINNING_SCORE = 11
 
 function love.load()
@@ -127,10 +126,17 @@ function love.update(dt)
         return
     elseif GameState == "play" then
         -- check for collisions w/ paddles
-        if Ball:isColliding(Player1) or Ball:isColliding(Player2) then
+        if Ball:isColliding(Player1) then
             Sounds.paddle:setPitch(1 + math.random(-10, 10) / 100)
             Sounds.paddle:play()
-            Ball:setDx(-Ball:getDx() * 1.1)
+            Ball:setX(Ball:getX() + Ball:getRadius())
+            Ball:setDx(-Ball:getDx() * 1.03)
+            Ball:setDy(Ball:getDy() + math.random(-100, 100))
+        elseif Ball:isColliding(Player2) then
+            Sounds.paddle:setPitch(1 + math.random(-10, 10) / 100)
+            Sounds.paddle:play()
+            Ball:setX(Ball:getX() - Ball:getRadius())
+            Ball:setDx(-Ball:getDx() * 1.03)
             Ball:setDy(Ball:getDy() + math.random(-100, 100))
         end
 
