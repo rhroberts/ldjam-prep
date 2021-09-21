@@ -16,10 +16,6 @@ function love.load()
         animationDelta = 5
     }
 
-    -- tweenAlpha = {
-    --     alpha = 1.0
-    -- }
-    -- flux.to(tweenAlpha, planetSprite.animationDelta / 60, {alpha = 0.0}):ease("linear"):oncomplete()
     love.graphics.setBlendMode("add")
     startTween()
 
@@ -56,19 +52,9 @@ end
 
 function love.update(dt)
     flux.update(dt)
-
-    -- planetSprite.timer = planetSprite.timer + 1
-
-    -- if planetSprite.timer > planetSprite.animationDelta then 
-    --      planetSprite.timer = 0
-    --      planetSprite.currentQuad = (planetSprite.currentQuad + 1) % planetSprite.nQuads
-    --      planetSprite.nextQuad = (planetSprite.nextQuad + 1) % planetSprite.nQuads
-    -- end
 end
 
 function love.draw()
-    -- print(tweenAlpha.alpha)
-
     -- tween from current sprite to the next
     love.graphics.setColor(1, 1, 1, tweenAlpha.alpha)
     love.graphics.draw(
