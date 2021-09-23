@@ -17,7 +17,7 @@
             }
         },
         {
-            "label": "WIndows Launch gas-giant",
+            "label": "Windows Launch gas-giant",
             "type": "process",
             "command": "C:\\Program Files\\LOVE\\love.exe",
             "args": [
@@ -29,7 +29,21 @@
                 "kind": "build",
                 "isDefault": true
             }
-        }
+        },
+        {
+            "label": "Windows Launch isometric block test",
+            "type": "process",
+            "command": "C:\\Program Files\\LOVE\\love.exe",
+            "args": [
+                "--console",
+                "${workspaceFolder}\\isometric-block-test"
+            ],
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
         {
             "label": "Windows Launch pong",
             "type": "process",
