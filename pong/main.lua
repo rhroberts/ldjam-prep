@@ -1,6 +1,6 @@
 -- entry point to game
-local Player = require"Player"
-local Ball = require"Ball"
+local player = require"player"
+local ball = require"ball"
 
 WINDOW_WIDTH = 1280
 WINDOW_HEIGHT = 720
@@ -26,12 +26,12 @@ function love.load()
 
     function DrawScore()
         love.graphics.printf(
-                {Player1:getColor(), Player1:getName() .. ": " .. Player1:getScore() .. "\n"}
+                {Player1.color, Player1.name .. ": " .. Player1.score .. "\n"}
             ,
             Fonts.small, 0, 0, WINDOW_WIDTH, "center"
         )
         love.graphics.printf(
-                {Player2:getColor(), Player2:getName() .. ": " .. Player2:getScore()}
+                {Player2.color, Player2.name .. ": " .. Player2.score}
             ,
             Fonts.small, 0, Fonts.small:getHeight(), WINDOW_WIDTH, "center"
         )
@@ -54,9 +54,9 @@ function love.load()
         paddle = love.audio.newSource("assets/sounds/paddle.ogg", "static")
     }
     -- game objects
-    Player1 = Player:new{name = "Player 1", color = {0.2, 0.2, 0.8}}
-    Player2 = Player:new{name = "Player 2", color = {0.2, 0.8, 0.2}}
-    Ball = Ball:new{}
+    Player1 = player:new{name = "Player 1", color = {0.2, 0.2, 0.8}}
+    Player2 = player:new{name = "Player 2", color = {0.2, 0.8, 0.2}}
+    ball = ball:new{}
 end
 
 function love.draw()
@@ -91,21 +91,21 @@ function love.draw()
             WINDOW_WIDTH,
             "center"
         )
-        Ball:set()
+        ball:set()
         Player1:draw()
         Player2:draw()
     elseif GameState == "play" then
         DrawScore()
-        Ball:draw()
+        ball:draw()
         Player1:draw()
         Player2:draw()
     elseif GameState == "finished" then
         love.graphics.printf(
             {
-                Player1:isWinner() and Player1:getColor() or
-                Player2:isWinner() and Player2:getColor(),
-                Player1:isWinner() and Player1:getName() .. " wins!" or
-                Player2:isWinner() and Player2:getName() .. " wins!"
+                Player1.winner and Player1.color or
+                Player2.winner and Player2.color,
+                Player1.winner and Player1.name .. " wins!" or
+                Player2.winner and Player2.name .. " wins!"
             },
             Fonts.big, 0, WINDOW_HEIGHT / 2, WINDOW_WIDTH, "center"
         )
@@ -126,66 +126,66 @@ function love.update(dt)
         return
     elseif GameState == "play" then
         -- check for collisions w/ paddles
-        if Ball:isColliding(Player1) then
+        if ball:isColliding(Player1) then
             Sounds.paddle:setPitch(1 + math.random(-10, 10) / 100)
             Sounds.paddle:play()
-            Ball:setX(Ball:getX() + Ball:getRadius())
-            Ball:setDx(-Ball:getDx() * 1.03)
-            Ball:setDy(Ball:getDy() + math.random(-100, 100))
-        elseif Ball:isColliding(Player2) then
+            ball.x = ball.x + ball.radius
+            ball.dx = -ball.dx * 1.03
+            ball.dy = ball.dy + math.random(-100, 100)
+        elseif ball:isColliding(Player2) then
             Sounds.paddle:setPitch(1 + math.random(-10, 10) / 100)
             Sounds.paddle:play()
-            Ball:setX(Ball:getX() - Ball:getRadius())
-            Ball:setDx(-Ball:getDx() * 1.03)
-            Ball:setDy(Ball:getDy() + math.random(-100, 100))
+            ball.x = ball.x - ball.radius
+            ball.dx = -ball.dx * 1.03
+            ball.dy = ball.dy + math.random(-100, 100)
         end
 
         -- ball to the walls
-        if Ball:getY() < Ball:getRadius() then
-            Ball:setY(Ball:getRadius())
-            Ball:setDy(-Ball:getDy())
-        elseif Ball:getY() > WINDOW_HEIGHT - Ball:getRadius() then
-            Ball:setY(WINDOW_HEIGHT - Ball:getRadius())
-            Ball:setDy(-Ball:getDy())
-        elseif Ball:getX() < Ball:getRadius() then
+        if ball.y < ball.radius then
+            ball.y = ball.radius
+            ball.dy = -ball.dy
+        elseif ball.y > WINDOW_HEIGHT - ball.radius then
+            ball.y = WINDOW_HEIGHT - ball.radius
+            ball.dy = -ball.dy
+        elseif ball.x < ball.radius then
             -- player2 scores on player1
             Player2:incrementScore()
-            Ball:set()
-            if Player2:getScore() == WINNING_SCORE then
+            ball:set()
+            if Player2.score == WINNING_SCORE then
                 GameState = "finished"
-                Player2:setWinner(true)
+                Player2.winner = true
             else
                 GameState = "serve"
             end
-        elseif Ball:getX() > WINDOW_WIDTH - Ball:getRadius() then
+        elseif ball.x > WINDOW_WIDTH - ball.radius then
             -- player1 scores on player2
             Player1:incrementScore()
-            Ball:set()
-            if Player1:getScore() == WINNING_SCORE then
+            ball:set()
+            if Player1.score == WINNING_SCORE then
                 GameState = "finished"
-                Player1:setWinner(true)
+                Player1.winner = true
             else
                 GameState = "serve"
             end
         end
-        Ball:move(dt)
+        ball:move(dt)
     end
 
     -- paddles can move whenever
     if love.keyboard.isDown("s") then
-        Player1:setVelocity(PADDLE_SPEED)
+        Player1.velocity = PADDLE_SPEED
     elseif love.keyboard.isDown("w") then
-        Player1:setVelocity(-PADDLE_SPEED)
+        Player1.velocity = -PADDLE_SPEED
     else
-        Player1:setVelocity(0)
+        Player1.velocity = 0
     end
 
     if love.keyboard.isDown("down") then
-        Player2:setVelocity(PADDLE_SPEED)
+        Player2.velocity = PADDLE_SPEED
     elseif love.keyboard.isDown("up") then
-        Player2:setVelocity(-PADDLE_SPEED)
+        Player2.velocity = -PADDLE_SPEED
     else
-        Player2:setVelocity(0)
+        Player2.velocity = 0
     end
 
     Player1:move(dt)
