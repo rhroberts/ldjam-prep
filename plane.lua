@@ -3,18 +3,21 @@ local f22 = peachy.new("sprites/F-22.json", love.graphics.newImage("sprites/F-22
 local br = peachy.new("sprites/F-22.json", love.graphics.newImage("sprites/F-22.png"), "Roll")
 
 Plane = {}
+v0 = 5333.3333
 
 function Plane:load()
 	-- Load plane
 	self.image = f22				-- Apply Aseprite
 	self.x = 100					-- Plane x coordinate
+	self.dx = 0						-- Plane dx
 	self.y = 200					-- Plane y coordinate
-	self.xVel = 0					-- Plane x velocity
-	self.yVel = 0					-- Plane y velocity
+	self.dy = 0						-- Plane dy
 	self.mass = 10					-- Plane mass
 	self.width = f22:getWidth()		-- Image width
 	self.height = f22:getHeight()	-- Image height
-	self.v = 5333.3333				-- Air Velocity
+	self.v = v0						-- Air Velocity
+	self.vx = v0					-- Plane vx
+	self.vy = 0						-- Plane vy
 	self.cl = 1.2					-- Lift Coefficient CL
 	self.cd = 0.0183333				-- Drag Coefficient CD
 	self.thr = 98					-- Thrust
@@ -40,6 +43,7 @@ function Plane:draw()
 end
 
 function Plane:move(dt)
+	-- Handle Thrust
 	if love.keyboard.isDown("d", "right") then
 		self.thr = self.thr + 10
 		if self.thr > self.maxthr then
@@ -51,6 +55,7 @@ function Plane:move(dt)
 			self.thr = 0
 		end
 	end
+	-- Handle AoA
 	if love.keyboard.isDown("w", "up") then
 		self.alpha = self.alpha - 0.5
 		self.cl = self:liftCoefficient()
@@ -65,7 +70,13 @@ function Plane:move(dt)
 	-- Apply Drag
 	self.physics.body:applyForce(-self.v * self.cd, 0)
 	-- Apply Thrust
-	self.physics.body:applyForce(self.thr, 0)
+	self.physics.body:applyForce(self:thrustVector())
+	-- Increment deltas for camera movement
+	self.vx, self.vy = self.physics.body:getLinearVelocity()
+	self.dx = self.dx - self.vx * dt
+	self.dy = self.dy - self.vy * dt
+	-- self.vx = self.vx + v0
+	-- self.vy = self.vy
 end
 
 function Plane:syncPhysics()
@@ -80,4 +91,10 @@ end
 function Plane:dragCoefficient()
 	-- CD = a * CL^2 + c
 	return 0.0083333333 * (self.cl-0.2)^2.0 + 0.01
+end
+
+function Plane:thrustVector()
+	thrx = self.thr*math.cos(self.alpha*math.pi/180)
+	thry = -self.thr*math.sin(self.alpha*math.pi/180)
+	return thrx, thry
 end
