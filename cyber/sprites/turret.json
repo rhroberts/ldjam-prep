@@ -1,0 +1,83 @@
+{ "frames": [
+   {
+    "filename": "turret 0.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 144, "h": 64 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 144, "h": 64 },
+    "sourceSize": { "w": 144, "h": 64 },
+    "duration": 100
+   },
+   {
+    "filename": "turret 1.aseprite",
+    "frame": { "x": 144, "y": 0, "w": 144, "h": 64 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 144, "h": 64 },
+    "sourceSize": { "w": 144, "h": 64 },
+    "duration": 100
+   },
+   {
+    "filename": "turret 2.aseprite",
+    "frame": { "x": 288, "y": 0, "w": 144, "h": 64 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 144, "h": 64 },
+    "sourceSize": { "w": 144, "h": 64 },
+    "duration": 100
+   },
+   {
+    "filename": "turret 3.aseprite",
+    "frame": { "x": 432, "y": 0, "w": 144, "h": 64 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 144, "h": 64 },
+    "sourceSize": { "w": 144, "h": 64 },
+    "duration": 100
+   },
+   {
+    "filename": "turret 4.aseprite",
+    "frame": { "x": 576, "y": 0, "w": 144, "h": 64 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 144, "h": 64 },
+    "sourceSize": { "w": 144, "h": 64 },
+    "duration": 100
+   },
+   {
+    "filename": "turret 5.aseprite",
+    "frame": { "x": 720, "y": 0, "w": 144, "h": 64 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 144, "h": 64 },
+    "sourceSize": { "w": 144, "h": 64 },
+    "duration": 100
+   },
+   {
+    "filename": "turret 6.aseprite",
+    "frame": { "x": 864, "y": 0, "w": 144, "h": 64 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 144, "h": 64 },
+    "sourceSize": { "w": 144, "h": 64 },
+    "duration": 100
+   }
+ ],
+ "meta": {
+  "app": "http://www.aseprite.org/",
+  "version": "1.2.29-x64",
+  "image": "turret.png",
+  "format": "RGBA8888",
+  "size": { "w": 1008, "h": 64 },
+  "scale": "1",
+  "frameTags": [
+   { "name": "Static", "from": 0, "to": 0, "direction": "forward" },
+   { "name": "Firing", "from": 1, "to": 6, "direction": "forward" }
+  ],
+  "layers": [
+   { "name": "Head", "opacity": 255, "blendMode": "normal" }
+  ],
+  "slices": [
+  ]
+ }
+}
