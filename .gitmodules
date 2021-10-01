@@ -4,3 +4,6 @@
 [submodule "pong/ext/pprint"]
 	path = pong/ext/pprint
 	url = https://github.com/jagt/pprint.lua.git
+[submodule "platformer/3rd/sti"]
+	path = platformer/3rd/sti
+	url = https://github.com/karai17/Simple-Tiled-Implementation.git
