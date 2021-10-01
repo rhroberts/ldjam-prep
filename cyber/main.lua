@@ -1,9 +1,12 @@
 require("turret")
-require("droid")
+local droid = require("droid")
+local bump = require("bump/bump")
 
 -- Define locals
 local width, height = 720, 300
 local layers = {}
+-- World creation
+local world = bump.newWorld()
 
 function love.load()
 	-- -- Set Window size
@@ -19,7 +22,7 @@ end
 
 function love.update(dt)
 	Turret:update(dt)
-	Droid:update(dt)
+	Droid:update(dt, Turret.bullets)
 end
 
 function love.draw()
@@ -31,10 +34,9 @@ function love.draw()
 	love.graphics.print("Alpha: ", 100, 75)
 	love.graphics.print(Turret.alpha, 150, 75)
 	
-	-- Draw Turret
-	Turret:draw()
-	
 	-- Draw Droid
 	Droid:draw()
 	
+	-- Draw Turret
+	Turret:draw()
 end
